@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-(k))l=jj_4%h1m!iiw+jp&vpqcz_#gr+gv+xw-pau5)o$-e8sy
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1"]
 
 
 # Application definition
@@ -118,4 +118,4 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 MEDIA_URL = "media/"
-MEDIA_ROOT = "media"  # Define la ruta para almacenar los archivos multimedia
+MEDIA_ROOT = BASE_DIR / "media"  # Define la ruta para almacenar los archivos multimedia
