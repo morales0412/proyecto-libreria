@@ -20,15 +20,15 @@ class Editora(models.Model):
 
 
 class Libros(models.Model):
-    nombre_libro = models.CharField(max_length=50)
+    nombreLibro = models.CharField(max_length=50)
     autor = models.ForeignKey(Autor, on_delete=models.CASCADE, null=False)
     # atributo = models.ForeignKey(EntidadRelacionada, on_delete=models.CASCADE, null= False) = Define una relacion de clave foranea entre el modelo actual y otro modelo, osea relaciona 2 tablas.
     editora = models.ForeignKey(Editora, on_delete=models.CASCADE, null=False)
     precio = models.DecimalField(max_digits=5, decimal_places=2, null=False)
-    fecha_publicacion = models.DateField(null=False)
+    fechaPublicacion = models.DateField(null=False)
     imagen = models.ImageField(upload_to="media/", blank=True, null=True)
     sinopsis = models.TextField(null=False)
     disponible = models.BooleanField(default=True)
 
     def __str__(self):
-        return f"{self.nombre_libro}"
+        return f"{self.nombreLibro}"
