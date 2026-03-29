@@ -8,20 +8,28 @@ class Autor(models.Model):
     apellido = models.CharField(max_length=15)
 
     def __str__(self):
-        return f"{self.nombre}"
+        return self.nombre
 
 
 class Editora(models.Model):
-    nombre_editora = models.CharField(max_length=50)
+    nombreEditora = models.CharField(max_length=50)
     ciudad = models.CharField(max_length=50)
 
     def __str__(self):
-        return f"{self.nombre_editora}"
+        return self.nombreEditora
+
+
+class Generos(models.Model):
+    tipoGenero = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.tipoGenero
 
 
 class Libros(models.Model):
     nombreLibro = models.CharField(max_length=50)
     autor = models.ForeignKey(Autor, on_delete=models.CASCADE, null=False)
+    genero = models.ForeignKey(Generos, on_delete=models.CASCADE, null=True)
     # atributo = models.ForeignKey(EntidadRelacionada, on_delete=models.CASCADE, null= False) = Define una relacion de clave foranea entre el modelo actual y otro modelo, osea relaciona 2 tablas.
     editora = models.ForeignKey(Editora, on_delete=models.CASCADE, null=False)
     precio = models.DecimalField(max_digits=5, decimal_places=2, null=False)
@@ -31,4 +39,4 @@ class Libros(models.Model):
     disponible = models.BooleanField(default=True)
 
     def __str__(self):
-        return f"{self.nombreLibro}"
+        return self.nombreLibro
