@@ -7,7 +7,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path("admin/", admin.site.urls),
     path(
-        "",
+        "libros/",
         include("catalogo_libros.urls"),
     ),  # path("",include("app.urls")) = Incluye las urls definidas en el archivo urls.py de la app especificada
 ]
