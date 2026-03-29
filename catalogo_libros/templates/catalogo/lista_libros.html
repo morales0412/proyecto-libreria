@@ -1,15 +1,39 @@
 {% extends 'catalogo/base.html' %}
+{% load static %}
+
+{% block title %}Catálogo de Libros{% endblock %}
 
 {% block content %}
-<h1>Catálogo de Libros</h1>
+<section id="catalogo">
+    <h2>Libros disponibles</h2>
 
-<ul>
-    {% for libro in libros %}
-        <li>
-            <a href="{% url 'detalle_libro' libro.id %}">
-                {{ libro.titulo }}
-            </a>
-        </li>
-    {% endfor %}
-</ul>
+    <div class="grid-libros">
+        {% for libro in libros %}
+        <article class="libro-card">
+
+            {% if libro.imagen %}
+                <img src="{{ libro.imagen.url }}" alt="{{ libro.nombreLibro }}">
+            {% else %}
+                <img src="{% static 'img/default.jpg' %}" alt="Sin portada">
+            {% endif %}
+
+            <h3>{{ libro.nombreLibro }}</h3>
+            <p>{{ libro.autor.nombre }} {{ libro.autor.apellido }}</p>
+            <span>$ {{ libro.precio }}</span>
+
+            <div class="acciones">
+                <a href="{% url 'detalle_libro' libro.id %}" class="btn-detalle">
+                    Ver detalle
+                </a>
+                <button class="btn-carrito">
+                    Añadir al carrito
+                </button>
+            </div>
+
+        </article>
+        {% empty %}
+            <p>No hay libros disponibles.</p>
+        {% endfor %}
+    </div>
+</section>
 {% endblock %}

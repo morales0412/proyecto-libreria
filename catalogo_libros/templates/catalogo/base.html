@@ -1,13 +1,56 @@
-<!DOCTYPE html>
+{% load static %}
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Catálogo de Libros</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}La Casa del Libro{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
 </head>
 <body>
 
+<header>
+    <div class="header-inner">
+
+
+        <div class="header-top">
+            <img src="{% static 'img/logo.jpg' %}" alt="La Casa del Libro" class="logo">
+            <h1 class="site-title">La Casa del Libro</h1>
+        </div>
+
+        <div class="header-bottom">
+
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Historia</a></li>
+                    <li><a href="#">Actividades</a></li>
+                    <li><a href="#">Categorías</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <a href="#" class="carrito">🛒 Mi Carrito</a>
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">Twitter</a>
+            </div>
+
+        </div>
+
+    </div>
+</header>
+
+<main>
     {% block content %}
     {% endblock %}
+
+
+</main>
+
+<footer>
+    <p>&copy; 2026 La Casa del Libro - Todos los derechos reservados.</p>
+</footer>
 
 </body>
 </html>

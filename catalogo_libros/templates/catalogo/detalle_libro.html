@@ -1,11 +1,30 @@
 {% extends 'catalogo/base.html' %}
+{% load static %}
+
+{% block title %}{{ libro.nombreLibro }}{% endblock %}
 
 {% block content %}
-<h1>{{ libro.titulo }}</h1>
+<section id="detalle-libro">
 
-<p><strong>Autor:</strong> {{ libro.autor }}</p>
-<p><strong>Editorial:</strong> {{ libro.editorial }}</p>
-<p><strong>Año:</strong> {{ libro.anio_publicacion }}</p>
+    <article class="libro-detalle">
 
-<a href="{% url 'lista_libros' %}">Volver al catálogo</a>
+        {% if libro.imagen %}
+            <img src="{{ libro.imagen.url }}" alt="{{ libro.nombreLibro }}">
+        {% else %}
+            <img src="{% static 'img/default.jpg' %}" alt="Sin portada">
+        {% endif %}
+
+        <div class="info-libro">
+            <h2>{{ libro.nombreLibro }}</h2>
+            <p><strong>Autor:</strong> {{ libro.autor.nombre }} {{ libro.autor.apellido }}</p>
+            <p><strong>Precio:</strong> $ {{ libro.precio }}</p>
+
+            <a href="{% url 'libros' %}" class="btn-volver">
+                ← Volver al catálogo
+            </a>
+        </div>
+
+    </article>
+
+</section>
 {% endblock %}

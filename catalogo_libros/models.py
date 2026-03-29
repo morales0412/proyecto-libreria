@@ -12,11 +12,11 @@ class Autor(models.Model):
 
 
 class Editora(models.Model):
-    nombre = models.CharField(max_length=50)
+    nombre_editora = models.CharField(max_length=50)
     ciudad = models.CharField(max_length=50)
 
     def __str__(self):
-        return f"{self.nombre}"
+        return f"{self.nombre_editora}"
 
 
 class Libros(models.Model):
