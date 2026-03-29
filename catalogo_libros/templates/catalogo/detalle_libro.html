@@ -1,7 +1,7 @@
 {% extends 'catalogo/base.html' %}
 {% load static %}
 
-{% block title %}{{ libro.nombreLibro }}{% endblock %}
+{% block title %}{{ libro.nombre_libro }}{% endblock %}
 
 {% block content %}
 <section id="detalle-libro">
@@ -15,7 +15,7 @@
         {% endif %}
 
         <div class="info-libro">
-            <h2>{{ libro.nombreLibro }}</h2>
+            <h2>{{ libro.nombre_libro }}</h2>
             <p><strong>Autor:</strong> {{ libro.autor.nombre }} {{ libro.autor.apellido }}</p>
             <p><strong>Precio:</strong> $ {{ libro.precio }}</p>
 

@@ -12,12 +12,12 @@
         <article class="libro-card">
 
             {% if libro.imagen %}
-                <img src="{{ libro.imagen.url }}" alt="{{ libro.nombreLibro }}">
+                <img src="{{ libro.imagen.url }}" alt="{{ libro.nombre_libro }}">
             {% else %}
                 <img src="{% static 'img/default.jpg' %}" alt="Sin portada">
             {% endif %}
 
-            <h3>{{ libro.nombreLibro }}</h3>
+            <h3>{{ libro.nombre_libro }}</h3>
             <p>{{ libro.autor.nombre }} {{ libro.autor.apellido }}</p>
             <span>$ {{ libro.precio }}</span>
 
