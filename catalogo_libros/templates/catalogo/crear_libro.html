@@ -106,35 +106,42 @@
         {% endfor %}
     {% endif %}
 
-    <form method="POST" enctype="multipart/form-data" novalidate>
-        {% csrf_token %}
+       <form method="POST" enctype="multipart/form-data" novalidate>
+    {% csrf_token %}
 
-        {% for field in form %}
-            <div class="campo {% if field.errors %}error{% endif %}">
+    {% for field in form %}
+        <div class="campo {% if field.errors %}error{% endif %}">
 
-                <label for="{{ field.id_for_label }}">
-                    {{ field.label }}
-                </label>
+            <label for="{{ field.id_for_label }}">
+                {{ field.label }}
+            </label>
 
-                {{ field }}
+            {{ field }}
 
-                {% if field.errors %}
-                    <div class="error-text">
-                        {{ field.errors|striptags }}
-                    </div>
-                {% endif %}
+            {% if field.errors %}
+                <div class="error-text">
+                    {{ field.errors|striptags }}
+                </div>
+            {% endif %}
 
-                {% if field.help_text %}
-                    <div class="help-text">
-                        {{ field.help_text }}
-                    </div>
-                {% endif %}
+            {% if field.help_text %}
+                <div class="help-text">
+                    {{ field.help_text }}
+                </div>
+            {% endif %}
 
-            </div>
-        {% endfor %}
+        </div>
+    {% endfor %}
 
-        <button type="submit">Guardar Libro</button>
-    </form>
+
+  <div style="display: flex; gap: 10px;">
+    <button type="submit" name="action" value="guardar">Guardar Libro</button>
+    <button type="submit" name="action" value="logout" style="background-color: #dc3545; color: white;">
+        Cerrar Sesión
+    </button>
+</div>
+
+</form>
 
 </div>
 

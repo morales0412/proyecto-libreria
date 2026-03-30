@@ -119,3 +119,12 @@ STATIC_URL = "static/"
 
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"  # Define la ruta para almacenar los archivos multimedia
+
+# url que django redirige cuando un usuario no autenticado intenta acceder a una vista protegida por login_required
+LOGIN_URL = "/libros/login/"
+
+# url a la que se redirige al usuario despues de cerrar sesión
+LOGOUT_REDIRECT_URL = "/libros/login/"
+
+# url que redirige al usuario despues de iniciar sesión
+LOGIN_REDIRECT_URL = "/libros/crear/"
