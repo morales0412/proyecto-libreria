@@ -27,7 +27,8 @@ def crear_libro(request):
             form.save()
             # muestra un mensaje de exito al usuario
             messages.success(request, "Libro creado correctamente")
-            return redirect("libros")
+            form = LibrosForm()
+            return redirect("crear_libro")
         else:
             # muestra un mensaje de error al usuario si el  form no es valido
             messages.error(request, "Error al crear el libro")

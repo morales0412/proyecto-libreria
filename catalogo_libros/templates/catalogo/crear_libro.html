@@ -1,68 +1,141 @@
-<!DOCTYPE html>
-<html>
+{% load static %}
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
     <title>Crear Libro</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            width: 600px;
+            margin: 40px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 6px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .campo {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 6px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 80px;
+        }
+
+        /* 🔹 Campo fecha más pequeño */
+        input[type="date"] {
+            width: 180px;
+        }
+
+
+        .error input,
+        .error select,
+        .error textarea {
+            border: 1px solid red;
+        }
+
+        .error-text {
+            color: red;
+            font-size: 13px;
+        }
+
+        .help-text {
+            font-size: 12px;
+            color: #555;
+        }
+
+        .mensaje {
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+
+        .mensaje.success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .mensaje.error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        button {
+            padding: 8px 15px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 
-<div class="container mt-5">
+<div class="container">
+<img src="{% static 'img/logo.jpg' %}" alt="Logo" width="150" height="auto">
     <h2>Registrar Nuevo Libro</h2>
-    <!-- method="POST" = especifica que el formulario se enviará mediante el método POST -->
-    <!-- enctype="multipart/form-data" = especifica que el formulario puede enviar archivos -->
-    <form method="POST" enctype="multipart/form-data">
+
+       {% if messages %}
+        {% for message in messages %}
+            <div class="mensaje {{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data" novalidate>
         {% csrf_token %}
 
-        <div class="mb-3">
-            {{ form.nombreLibro.label_tag }}
-            {{ form.nombreLibro }}
-        </div>
+        {% for field in form %}
+            <div class="campo {% if field.errors %}error{% endif %}">
 
-        <div class="mb-3">
-            {{ form.autor.label_tag }}
-            {{ form.autor }}
-        </div>
+                <label for="{{ field.id_for_label }}">
+                    {{ field.label }}
+                </label>
 
-        <div class="mb-3">
-            {{ form.genero.label_tag }}
-            {{ form.genero }}
-        </div>
+                {{ field }}
 
-        <div class="mb-3">
-            {{ form.editora.label_tag }}
-            {{ form.editora }}
-        </div>
+                {% if field.errors %}
+                    <div class="error-text">
+                        {{ field.errors|striptags }}
+                    </div>
+                {% endif %}
 
-        <div class="mb-3">
-            {{ form.precio.label_tag }}
-            {{ form.precio }}
-        </div>
+                {% if field.help_text %}
+                    <div class="help-text">
+                        {{ field.help_text }}
+                    </div>
+                {% endif %}
 
-        <div class="mb-3">
-            {{ form.fechaPublicacion.label_tag }}
-            {{ form.fechaPublicacion }}
-        </div>
+            </div>
+        {% endfor %}
 
-        <div class="mb-3">
-            {{ form.imagen.label_tag }}
-            {{ form.imagen }}
-        </div>
-
-        <div class="mb-3">
-            {{ form.sinopsis.label_tag }}
-            {{ form.sinopsis }}
-        </div>
-
-        <div class="form-check mb-3">
-            {{ form.disponible }}
-            {{ form.disponible.label_tag }}
-        </div>
-
-        <button type="submit" class="btn btn-primary">
-            Guardar Libro
-        </button>
+        <button type="submit">Guardar Libro</button>
     </form>
+
 </div>
 
 </body>
