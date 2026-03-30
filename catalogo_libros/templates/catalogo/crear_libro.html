@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crear Libro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2>Registrar Nuevo Libro</h2>
+    <!-- method="POST" = especifica que el formulario se enviará mediante el método POST -->
+    <!-- enctype="multipart/form-data" = especifica que el formulario puede enviar archivos -->
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            {{ form.nombreLibro.label_tag }}
+            {{ form.nombreLibro }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.autor.label_tag }}
+            {{ form.autor }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.genero.label_tag }}
+            {{ form.genero }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.editora.label_tag }}
+            {{ form.editora }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.precio.label_tag }}
+            {{ form.precio }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.fechaPublicacion.label_tag }}
+            {{ form.fechaPublicacion }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.imagen.label_tag }}
+            {{ form.imagen }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.sinopsis.label_tag }}
+            {{ form.sinopsis }}
+        </div>
+
+        <div class="form-check mb-3">
+            {{ form.disponible }}
+            {{ form.disponible.label_tag }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Guardar Libro
+        </button>
+    </form>
+</div>
+
+</body>
+</html>

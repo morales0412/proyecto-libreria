@@ -5,4 +5,5 @@ from django.urls import path
 urlpatterns = [
     path("", views.lista_libros, name="libros"),
     path("libro/<int:id>/", views.detalle_libro, name="detalle_libro"),
+    path("crear/", views.crear_libro, name="crear_libro"),
 ]
